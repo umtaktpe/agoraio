@@ -165,14 +165,14 @@ type GetProjectUsageResponse struct {
 	} `json:"usages"`
 }
 
-func (c *client) GetAllProjects() (*GetAllProjectsResponse, error) {
+func (c *Client) GetAllProjects() (*GetAllProjectsResponse, error) {
 	response := &GetAllProjectsResponse{}
 	err := c.request("GET", "/v1/projects", nil, response)
 
 	return response, err
 }
 
-func (c *client) GetProject(params *GetProjectParameters) (*GetProjectResponse, error) {
+func (c *Client) GetProject(params *GetProjectParameters) (*GetProjectResponse, error) {
 	response := &GetProjectResponse{}
 	url := fmt.Sprintf("/v1/project?id=%s&name=%s", params.ID, params.Name)
 	err := c.request("GET", url, nil, response)
@@ -180,42 +180,42 @@ func (c *client) GetProject(params *GetProjectParameters) (*GetProjectResponse, 
 	return response, err
 }
 
-func (c *client) CreateProject(params *CreateProjectParameters) (*CreateProjectResponse, error) {
+func (c *Client) CreateProject(params *CreateProjectParameters) (*CreateProjectResponse, error) {
 	response := &CreateProjectResponse{}
 	err := c.request("POST", "/v1/project", params, response)
 
 	return response, err
 }
 
-func (c *client) ChangeProjectStatus(params *ProjectStatusParameters) (*ProjectStatusResponse, error) {
+func (c *Client) ChangeProjectStatus(params *ProjectStatusParameters) (*ProjectStatusResponse, error) {
 	response := &ProjectStatusResponse{}
 	err := c.request("POST", "/v1/project_status", params, response)
 
 	return response, err
 }
 
-func (c *client) SetIPAddress(params *RecordingConfigParameters) (*RecordingServerResponse, error) {
+func (c *Client) SetIPAddress(params *RecordingConfigParameters) (*RecordingServerResponse, error) {
 	response := &RecordingServerResponse{}
 	err := c.request("POST", "/v1/recording_config", params, response)
 
 	return response, err
 }
 
-func (c *client) ChangePrimaryCertificateStatus(params *SignKeyParameters) (*SignKeyResponse, error) {
+func (c *Client) ChangePrimaryCertificateStatus(params *SignKeyParameters) (*SignKeyResponse, error) {
 	response := &SignKeyResponse{}
 	err := c.request("POST", "/v1/signkey", params, response)
 
 	return response, err
 }
 
-func (c *client) ResetPrimaryCertificate(params *ResetSignKeyParameters) (*ResetSignKeyResponse, error) {
+func (c *Client) ResetPrimaryCertificate(params *ResetSignKeyParameters) (*ResetSignKeyResponse, error) {
 	response := &ResetSignKeyResponse{}
 	err := c.request("POST", "/v1/reset_signkey", params, response)
 
 	return response, err
 }
 
-func (c *client) GetProjectUsage(params *GetProjectUsageParameters) (*GetProjectUsageResponse, error) {
+func (c *Client) GetProjectUsage(params *GetProjectUsageParameters) (*GetProjectUsageResponse, error) {
 	response := &GetProjectUsageResponse{}
 	url := fmt.Sprintf("/v3/usage?project_id=%s&from_date=%s&to_date=%s&business=%s", params.ProjectID, params.FromDate, params.ToDate, params.Business)
 	err := c.request("GET", url, nil, response)

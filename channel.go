@@ -40,7 +40,7 @@ type GetChannelListResponse struct {
 	} `json:"data"`
 }
 
-func (c *client) GetUserStatus(params *GetUserStatusParameters) (*GetUserStatusResponse, error) {
+func (c *Client) GetUserStatus(params *GetUserStatusParameters) (*GetUserStatusResponse, error) {
 	response := &GetUserStatusResponse{}
 	url := fmt.Sprintf("/v1/channel/user/property/%s/%s/%s", c.appID, params.UID, params.ChannelName)
 	err := c.request("GET", url, nil, response)
@@ -48,14 +48,14 @@ func (c *client) GetUserStatus(params *GetUserStatusParameters) (*GetUserStatusR
 	return response, err
 }
 
-func (c *client) GetUserList(params *GetUserListParameters) (interface{}, error) {
+func (c *Client) GetUserList(params *GetUserListParameters) (interface{}, error) {
 	var response interface{}
 	err := c.request("GET", "/v1/channel/user/"+c.appID+"/"+params.ChannelName, nil, &response)
 
 	return response, err
 }
 
-func (c *client) GetChannelList(params *GetChannelListParameters) (*GetChannelListResponse, error) {
+func (c *Client) GetChannelList(params *GetChannelListParameters) (*GetChannelListResponse, error) {
 	response := &GetChannelListResponse{}
 
 	var url string

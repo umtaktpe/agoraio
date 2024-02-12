@@ -11,7 +11,7 @@ import (
 
 const baseURL = "https://api.agora.io/dev"
 
-type client struct {
+type Client struct {
 	baseURL        string
 	appID          string
 	customerKey    string
@@ -19,8 +19,8 @@ type client struct {
 	httpClient     *http.Client
 }
 
-func NewClient(appID, customerKey, customerSecret string) *client {
-	return &client{
+func NewClient(appID, customerKey, customerSecret string) *Client {
+	return &Client{
 		baseURL:        baseURL,
 		appID:          appID,
 		customerKey:    customerKey,
@@ -31,7 +31,7 @@ func NewClient(appID, customerKey, customerSecret string) *client {
 	}
 }
 
-func (c *client) request(method, endpoint string, params, response interface{}) error {
+func (c *Client) request(method, endpoint string, params, response interface{}) error {
 	var body io.Reader
 	if params != nil {
 		data, err := json.Marshal(params)

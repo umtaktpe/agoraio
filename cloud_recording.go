@@ -127,7 +127,7 @@ type StopRecordingParameters struct {
 	Uid        string `json:"uid"`
 }
 
-func (c *client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
+func (c *Client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
 	response := &AcquireResponse{}
 	c.baseURL = "https://api.agora.io"
 	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/acquire", params.AppID)
@@ -136,7 +136,7 @@ func (c *client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
 	return response, err
 }
 
-func (c *client) StartRecording(params *StartRecordingParameters) (*StartRecordingResponse, error) {
+func (c *Client) StartRecording(params *StartRecordingParameters) (*StartRecordingResponse, error) {
 	response := &StartRecordingResponse{}
 	c.baseURL = "https://api.agora.io"
 	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/mode/%s/start", params.AppID, params.ResourceID, params.Mode)
@@ -145,7 +145,7 @@ func (c *client) StartRecording(params *StartRecordingParameters) (*StartRecordi
 	return response, err
 }
 
-func (c *client) RecordingStatus(params *RecordingStatusParameters) (*RecordingStatusResponse, error) {
+func (c *Client) RecordingStatus(params *RecordingStatusParameters) (*RecordingStatusResponse, error) {
 	response := &RecordingStatusResponse{}
 	c.baseURL = "https://api.agora.io"
 	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/query", params.AppID, params.ResourceID, params.Sid, params.Mode)
@@ -154,7 +154,7 @@ func (c *client) RecordingStatus(params *RecordingStatusParameters) (*RecordingS
 	return response, err
 }
 
-func (c *client) StopRecording(params *StopRecordingParameters) (interface{}, error) {
+func (c *Client) StopRecording(params *StopRecordingParameters) (interface{}, error) {
 	var response interface{}
 	c.baseURL = "https://api.agora.io"
 	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/stop", params.AppID, params.ResourceID, params.Sid, params.Mode)

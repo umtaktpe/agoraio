@@ -58,28 +58,28 @@ type DeleteRuleResponse struct {
 	Status string `json:"status"`
 }
 
-func (c *client) GetRuleList() (*GetRuleListResponse, error) {
+func (c *Client) GetRuleList() (*GetRuleListResponse, error) {
 	response := &GetRuleListResponse{}
 	err := c.request("GET", "/v1/kicking-rule?appid="+c.appID, nil, response)
 
 	return response, err
 }
 
-func (c *client) CreateRule(params *CreateRuleParameters) (*CreateRuleResponse, error) {
+func (c *Client) CreateRule(params *CreateRuleParameters) (*CreateRuleResponse, error) {
 	response := &CreateRuleResponse{}
 	err := c.request("POST", "/v1/kicking-rule", params, response)
 
 	return response, err
 }
 
-func (c *client) UpdateRule(params *UpdateRuleParameters) (*UpdateRuleResponse, error) {
+func (c *Client) UpdateRule(params *UpdateRuleParameters) (*UpdateRuleResponse, error) {
 	response := &UpdateRuleResponse{}
 	err := c.request("PUT", "/v1/kicking-rule", params, response)
 
 	return response, err
 }
 
-func (c *client) DeleteRule(params *DeleteRuleParameters) (*DeleteRuleResponse, error) {
+func (c *Client) DeleteRule(params *DeleteRuleParameters) (*DeleteRuleResponse, error) {
 	response := &DeleteRuleResponse{}
 	err := c.request("DELETE", "/v1/kicking-rule", params, response)
 
