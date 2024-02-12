@@ -42,7 +42,7 @@ func (c *client) request(method, endpoint string, params, response interface{}) 
 		body = bytes.NewBuffer(data)
 	}
 
-	request, err := http.NewRequest(method, baseURL+endpoint, body)
+	request, err := http.NewRequest(method, c.baseURL+endpoint, body)
 	if err != nil {
 		return err
 	}
