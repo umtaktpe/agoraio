@@ -5,7 +5,6 @@ import (
 )
 
 type AcquireParameters struct {
-	AppID         string                         `json:"appid"`
 	Cname         string                         `json:"cname"`
 	UID           string                         `json:"uid"`
 	ClientRequest AcquireClientRequestParameters `json:"clientRequest"`
@@ -87,7 +86,6 @@ type ExtensionParams struct {
 }
 
 type StartRecordingParameters struct {
-	AppID         string                                `json:"appid"`
 	ResourceID    string                                `json:"resourceId"`
 	Mode          string                                `json:"mode"`
 	Cname         string                                `json:"cname"`
@@ -101,7 +99,6 @@ type StartRecordingResponse struct {
 }
 
 type RecordingStatusParameters struct {
-	AppID      string `json:"appid"`
 	ResourceID string `json:"resourceId"`
 	Sid        string `json:"sid"`
 	Mode       string `json:"mode"`
@@ -130,7 +127,7 @@ type StopRecordingParameters struct {
 func (c *Client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
 	response := &AcquireResponse{}
 	c.baseURL = "https://api.agora.io"
-	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/acquire", params.AppID)
+	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/acquire", c.appID)
 	err := c.request("POST", url, params, response)
 
 	return response, err
@@ -139,7 +136,7 @@ func (c *Client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
 func (c *Client) StartRecording(params *StartRecordingParameters) (*StartRecordingResponse, error) {
 	response := &StartRecordingResponse{}
 	c.baseURL = "https://api.agora.io"
-	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/mode/%s/start", params.AppID, params.ResourceID, params.Mode)
+	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/mode/%s/start", c.appID, params.ResourceID, params.Mode)
 	err := c.request("POST", url, params, response)
 
 	return response, err
@@ -148,7 +145,7 @@ func (c *Client) StartRecording(params *StartRecordingParameters) (*StartRecordi
 func (c *Client) RecordingStatus(params *RecordingStatusParameters) (*RecordingStatusResponse, error) {
 	response := &RecordingStatusResponse{}
 	c.baseURL = "https://api.agora.io"
-	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/query", params.AppID, params.ResourceID, params.Sid, params.Mode)
+	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/query", c.appID, params.ResourceID, params.Sid, params.Mode)
 	err := c.request("GET", url, nil, response)
 
 	return response, err
