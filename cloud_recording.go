@@ -23,7 +23,8 @@ type AcquireResponse struct {
 }
 
 type StartRecordingClientRequestParameters struct {
-	Token           string          `json:"token"`
+	Token           string          `json:"token,omitempty"`
+	AvFileType      []string        `json:"avFileType,omitempty"`
 	RecordingConfig RecordingConfig `json:"recordingConfig"`
 	StorageConfig   StorageConfig   `json:"storageConfig"`
 }
