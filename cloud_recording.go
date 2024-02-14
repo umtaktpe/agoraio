@@ -29,15 +29,11 @@ type StartRecordingClientRequestParameters struct {
 }
 
 type RecordingConfig struct {
-	ChannelType       int    `json:"channelType"` // 0: communication, 1: live broadcast
-	StreamTypes       int    `json:"streamTypes"` // 0: audio, 1: video, 2: audio and video
-	StreamMode        string `json:"streamMode"`  // default, standard, original
-	DecryptionMode    int    `json:"decryptionMode"`
-	Secret            string `json:"secret"`
-	Salt              string `json:"salt"`
-	VideoStreamType   int    `json:"videoStreamType"`
-	MaxIdleTime       int    `json:"maxIdleTime"`
-	SubscribeUidGroup int    `json:"subscribeUidGroup"`
+	ChannelType    int    `json:"channelType"` // 0: communication, 1: live broadcast
+	StreamTypes    int    `json:"streamTypes"` // 0: audio, 1: video, 2: audio and video
+	StreamMode     string `json:"streamMode"`  // default, standard, original
+	DecryptionMode int    `json:"decryptionMode"`
+	MaxIdleTime    int    `json:"maxIdleTime"`
 }
 
 type TranscodingConfig struct {
