@@ -115,12 +115,12 @@ type RecordingStatusResponse struct {
 }
 
 type StopRecordingParameters struct {
-	AppID      string `json:"appid"`
-	ResourceID string `json:"resourceId"`
-	Sid        string `json:"sid"`
-	Mode       string `json:"mode"`
-	Cname      string `json:"cname"`
-	Uid        string `json:"uid"`
+	ResourceID    string   `json:"resourceId"`
+	Sid           string   `json:"sid"`
+	Mode          string   `json:"mode"`
+	Cname         string   `json:"cname"`
+	Uid           string   `json:"uid"`
+	ClientRequest struct{} `json:"clientRequest"`
 }
 
 func (c *Client) Acquire(params *AcquireParameters) (*AcquireResponse, error) {
@@ -153,8 +153,8 @@ func (c *Client) RecordingStatus(params *RecordingStatusParameters) (*RecordingS
 func (c *Client) StopRecording(params *StopRecordingParameters) (interface{}, error) {
 	var response interface{}
 	c.baseURL = "https://api.agora.io"
-	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/stop", params.AppID, params.ResourceID, params.Sid, params.Mode)
-	err := c.request("POST", url, params, response)
+	url := fmt.Sprintf("/v1/apps/%s/cloud_recording/resourceid/%s/sid/%s/mode/%s/stop", c.appID, params.ResourceID, params.Sid, params.Mode)
+	err := c.request("POST", url, params, &response)
 
 	return response, err
 }
